@@ -22,7 +22,6 @@ jobs:
         curl -L -o libs/junit-jupiter-engine-5.7.0.jar https://repo1.maven.org/maven2/org/junit/jupiter/junit-jupiter-engine/5.7.0/junit-jupiter-engine-5.7.0.jar
 
     - name: Compile Java code
-      run: javac -d bin -cp "libs/junit-jupiter-api-5.7.0.jar" src/*.java 5
-
+      run: javac -d bin -cp "libs/junit-jupiter-api-5.7.0.jar" src/*.java  
     - name: Run Unit Tests
       run: java -cp "bin:libs/junit-jupiter-api-5.7.0.jar:libs/junit-jupiter-engine-5.7.0.jar" org.junit.runner.JUnitCore GradeCalculatorTest  
