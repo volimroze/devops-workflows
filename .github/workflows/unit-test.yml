@@ -13,8 +13,8 @@ jobs:
       uses: actions/setup-java@v2
       with:
         java-version: '17'
-
+        distribution: 'adopt'  
     - name: Compile Java code
-      run: javac -d bin src/*.java 
+      run: javac -d bin src/*.java  
     - name: Run Unit Tests
       run: java -cp bin org.junit.runner.JUnitCore GradeCalculatorTest  
