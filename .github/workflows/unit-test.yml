@@ -13,15 +13,18 @@ jobs:
       uses: actions/setup-java@v2
       with:
         java-version: '17'
-        distribution: 'adopt'  # Or 'temurin' or 'zulu'
+        distribution: 'adopt' 
 
-    - name: Download JUnit 5
+    - name: Download JUnit 5 and Dependencies
       run: |
         mkdir -p libs
         curl -L -o libs/junit-jupiter-api-5.7.0.jar https://repo1.maven.org/maven2/org/junit/jupiter/junit-jupiter-api/5.7.0/junit-jupiter-api-5.7.0.jar
         curl -L -o libs/junit-jupiter-engine-5.7.0.jar https://repo1.maven.org/maven2/org/junit/jupiter/junit-jupiter-engine/5.7.0/junit-jupiter-engine-5.7.0.jar
+        curl -L -o libs/opentest4j-1.2.0.jar https://repo1.maven.org/maven2/org/opentest4j/opentest4j/1.2.0/opentest4j-1.2.0.jar
+        curl -L -o libs/junit-platform-commons-1.7.0.jar https://repo1.maven.org/maven2/org/junit/platform/junit-platform-commons/1.7.0/junit-platform-commons-1.7.0.jar
+        curl -L -o libs/apiguardian-api-1.1.0.jar https://repo1.maven.org/maven2/org/apiguardian/api/apiguardian-api/1.1.0/apiguardian-api-1.1.0.jar
 
     - name: Compile Java code
-      run: javac -d bin --module-path libs -cp "libs/junit-jupiter-api-5.7.0.jar" src/*.java 
+      run: javac -d bin --module-path libs -cp "libs/*" src/*.java 
     - name: Run Unit Tests
-      run: java -cp "bin:libs/junit-jupiter-api-5.7.0.jar:libs/junit-jupiter-engine-5.7.0.jar" org.junit.runner.JUnitCore GradeCalculatorTest  
+      run: java -cp "bin:libs/*" org.junit.runner.JUnitCore GradeCalculatorTest 
