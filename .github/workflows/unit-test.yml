@@ -13,8 +13,16 @@ jobs:
       uses: actions/setup-java@v2
       with:
         java-version: '17'
-        distribution: 'adopt'  
+        distribution: 'adopt'  # Or use 'temurin' or 'zulu'
+
+    - name: Download JUnit 5
+      run: |
+        mkdir -p libs
+        curl -L -o libs/junit-jupiter-api-5.7.0.jar https://repo1.maven.org/maven2/org/junit/jupiter/junit-jupiter-api/5.7.0/junit-jupiter-api-5.7.0.jar
+        curl -L -o libs/junit-jupiter-engine-5.7.0.jar https://repo1.maven.org/maven2/org/junit/jupiter/junit-jupiter-engine/5.7.0/junit-jupiter-engine-5.7.0.jar
+
     - name: Compile Java code
-      run: javac -d bin src/*.java  
+      run: javac -d bin -cp "libs/junit-jupiter-api-5.7.0.jar" src/*.java 5
+
     - name: Run Unit Tests
-      run: java -cp bin org.junit.runner.JUnitCore GradeCalculatorTest  
+      run: java -cp "bin:libs/junit-jupiter-api-5.7.0.jar:libs/junit-jupiter-engine-5.7.0.jar" org.junit.runner.JUnitCore GradeCalculatorTest  
