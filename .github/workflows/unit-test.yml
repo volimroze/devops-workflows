@@ -1,0 +1,15 @@
+name: Unit Testing
+
+on: [push]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: Install dependencies
+      run: |
+        npm install  # or `pip install -r requirements.txt` for Python
+    - name: Run Unit Tests
+      run: |
+        npm test  # or `pytest` for Python
