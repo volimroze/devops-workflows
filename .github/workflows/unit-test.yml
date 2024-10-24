@@ -12,9 +12,9 @@ jobs:
     - name: Set up JDK
       uses: actions/setup-java@v2
       with:
-        java-version: '17'      
+        java-version: '17'
+
     - name: Compile Java code
-      run: javac -d bin src/**/*.java 
-    
+      run: javac -d bin src/*.java 
     - name: Run Unit Tests
-      run: java -cp bin org.junit.runner.JUnitCore GradeCalculatorTest.java
+      run: java -cp bin org.junit.runner.JUnitCore GradeCalculatorTest  
