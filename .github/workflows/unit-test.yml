@@ -13,7 +13,7 @@ jobs:
       uses: actions/setup-java@v2
       with:
         java-version: '17'
-        distribution: 'adopt' 
+        distribution: 'adopt'  
 
     - name: Download JUnit 5 and Dependencies
       run: |
@@ -25,6 +25,7 @@ jobs:
         curl -L -o libs/apiguardian-api-1.1.0.jar https://repo1.maven.org/maven2/org/apiguardian/api/apiguardian-api/1.1.0/apiguardian-api-1.1.0.jar
 
     - name: Compile Java code
-      run: javac -d bin --module-path libs -cp "libs/*" src/*.java 
+      run: javac -d bin --module-path libs -cp "libs/*" src/*.java  
+
     - name: Run Unit Tests
-      run: java -cp "bin:libs/*" org.junit.runner.JUnitCore GradeCalculatorTest 
+      run: java -cp "bin:libs/*" org.junit.runner.JUnitCore GradeCalculatorTest  
