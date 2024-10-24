@@ -30,5 +30,8 @@ jobs:
     - name: Compile Java code
       run: javac -d bin --module-path libs -cp "libs/*" src/*.java
 
+    - name: Verify Compiled Files
+      run: ls -lh bin  
+
     - name: Run Unit Tests
       run: java -jar libs/junit-platform-console-standalone-1.7.0.jar --class-path bin --select-class GradeCalculatorTest
