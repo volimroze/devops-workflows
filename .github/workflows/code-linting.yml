@@ -1,0 +1,23 @@
+name: Code Linting
+
+on: [push, pull_request]
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+
+    - name: Set up JDK
+      uses: actions/setup-java@v2
+      with:
+        java-version: '17'
+        distribution: 'adopt'
+
+    - name: Install Checkstyle
+      run: |
+        curl -L -o checkstyle.jar https://github.com/checkstyle/checkstyle/releases/download/checkstyle-10.0/checkstyle-10.0-all.jar
+
+    - name: Run Checkstyle
+      run: java -jar checkstyle.jar -c google_checks.xml src/
